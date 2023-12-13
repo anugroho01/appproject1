@@ -1,8 +1,10 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../controllers/page_index_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,42 +15,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  String nik = "";
-  String nama = "";
-  String kd_store = "";
-  String nm_store = "";
+  // final pageC = Get.find<PageIndexController>();
+  final pageC = Get.put(PageIndexController(), permanent: true);
+
   //int tTrx = 0;
   late int tTrx;
-  getPref() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    // final cekSession = await SharedPreferences.getInstance();
-
-    var islogin = pref.getBool("is_login");
-    print(islogin);
-    if (islogin != null && islogin == true) {
-      setState(() {
-        print('ada sessionnya');
-        nik = pref.getString("nik_portal")!;
-        nama = pref.getString("nama")!;
-        kd_store = pref.getString("kd_store")!;
-        nm_store = pref.getString("nm_toko")!;
-      });
-    }
-    // else {
-    //   Navigator.of(context, rootNavigator: true).pop();
-    //   Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (BuildContext context) => const MyApp(),
-    //     ),
-    //     (route) => false,
-    //   );
-    // }
-
-    setState(() {
-      getPref();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +27,16 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: Text('Homenya'),
       ),
-      body: Text('$nama'),
+      body: Text(pageC.kd_store),
+      bottomNavigationBar: ConvexAppBar(
+          backgroundColor: Colors.red,
+          items: [
+            TabItem(icon: Icons.home, title: 'Home'),
+            TabItem(icon: Icons.calendar_today),
+            TabItem(icon: Icons.person_outline_sharp, title: 'Profile'),
+          ],
+          initialActiveIndex: pageC.pageIndex.value,
+          onTap: (int i) => pageC.changePage(i)),
     );
   }
 }

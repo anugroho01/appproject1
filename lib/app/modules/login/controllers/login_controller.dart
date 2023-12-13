@@ -5,16 +5,20 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
   RxBool isLoading = false.obs;
+  RxBool islogin = false.obs;
 
   TextEditingController nik = TextEditingController();
   TextEditingController pin = TextEditingController();
 
   Future<void> cekLogin() async {
     isLoading.value = true;
+    final userdata = GetStorage();
+    SharedPreferences pref = await SharedPreferences.getInstance();
     if (nik.text.isNotEmpty && pin.text.isNotEmpty) {
       try {
         var queryparams = {
@@ -31,15 +35,24 @@ class LoginController extends GetxController {
         var data = json.decode(response.body);
         List result = await json.decode(response.body)?.toList() ?? [];
         print(data);
-        print(result[0]['nama']);
+        // print(result[0]['nama']);
         if (response.statusCode == 200) {
-          print('Login successfully');
           if (result[0]['sukses'] == 'T') {
-            SharedPreferences pref = await SharedPreferences.getInstance();
+            print('Login successfully');
+
+            //pake getstorage
+            // userdata.write('is_login', true);
+            // userdata.write('nik_portal', nik.text);
+            // userdata.write('nama', result[0]['nama']);
+            // userdata.write('kd_store', result[0]['toko']);
+            // userdata.write('jabatan', result[0]['jabatan']);
+
+            // pake sharedpreference
             await pref.setString("nik_portal", nik.text);
             await pref.setString("nama", result[0]['nama']);
             await pref.setString("kd_store", result[0]['toko']);
             await pref.setString("jabatan", result[0]['jabatan']);
+            await pref.setString("email", result[0]['email']);
             await pref.setBool("is_login", true);
 
             // final myMapsPref = jsonEncode({
@@ -48,9 +61,10 @@ class LoginController extends GetxController {
             //   "nama": result[0]['nama'],
             //   "kd_store": result[0]['toko'],
             //   "jabatan": result[0]['jabatan'],
-            //   "kd_branch": result[0]['branch']
+            //   "kd_branch": result[0]['branch'],
             // });
             // pref.setString('authData', myMapsPref);
+            islogin.value = true;
             Get.offAllNamed(Routes.HOME);
             isLoading.value = false;
           } else {
@@ -71,11 +85,5 @@ class LoginController extends GetxController {
       isLoading.value = false;
       Get.snackbar("Terjadi Kesalahan", "PIN dan NIK wajib di isi!");
     }
-  }
-
-  Future<void> autoLogin() async {
-    final pref = await SharedPreferences.getInstance();
-
-    final myData = pref.get('authData');
   }
 }
