@@ -10,7 +10,7 @@ import 'package:get_storage/get_storage.dart';
 class LoginController extends GetxController {
   //TODO: Implement LoginController
   RxBool isLoading = false.obs;
-  RxBool islogin = false.obs;
+  bool islogin = false;
 
   TextEditingController nik = TextEditingController();
   TextEditingController pin = TextEditingController();
@@ -64,7 +64,7 @@ class LoginController extends GetxController {
             //   "kd_branch": result[0]['branch'],
             // });
             // pref.setString('authData', myMapsPref);
-            islogin.value = true;
+            islogin = true;
             Get.offAllNamed(Routes.HOME);
             isLoading.value = false;
           } else {

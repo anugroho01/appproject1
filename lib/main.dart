@@ -24,8 +24,8 @@ import 'app/routes/app_pages.dart';
 // final pageC = Get.put(PageIndexController(), permanent: true);
 void main() async {
   runApp(MyApp());
-
-  //
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? nama = prefs.getString('nik_portal');
   // print(islogin);
 }
 
@@ -37,21 +37,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Future<bool> _isLogin;
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  Future<void> ceklog() async {
-    final SharedPreferences prefs = await _prefs;
-    final isLogin = prefs.getBool('is_login');
-    print(isLogin);
-    setState(() {
-      _isLogin = isLogin as Future<bool>;
-    });
-  }
-
+  // bool loginnya = false;
+  String loginnya = '';
+  // Object? get nama => null;
+  // Double? loginnya;
+  @override
   void initState() {
     super.initState();
-    _isLogin = _prefs.then((SharedPreferences prefs) {
-      return prefs.getBool('is_login') ?? true;
+    _isLogin();
+  }
+
+  void _isLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      // loginnya = prefs.getDouble('is_login') as bool;
+      loginnya = prefs.getString('nik_portal')!;
+      // print(nama);
     });
   }
 
@@ -59,9 +60,10 @@ class _MyAppState extends State<MyApp> {
   // final pageLogin = Get.find<LoginController>();
 
   Widget build(BuildContext context) {
-    //
+    // print(pageLogin.islogin.obs);
+    print(loginnya.isEmpty);
     return FutureBuilder(
-        future: _isLogin,
+        future: null,
         builder: (context, snapshot) {
           // if (snapshot.connectionState == ConnectionState.waiting) {
           //   return Scaffold(
@@ -73,10 +75,10 @@ class _MyAppState extends State<MyApp> {
 
           return GetMaterialApp(
             title: 'Aplikasi',
-            initialRoute: Routes.LOGIN,
-            // initialRoute: islogin.isTrue
-            //     ? Routes.HOME
-            //     : Routes.LOGIN, //islogin.isTrue ? Routes.HOME : Routes.LOGIN,
+            // initialRoute: Routes.LOGIN,
+            initialRoute: loginnya.isEmpty
+                ? Routes.HOME
+                : Routes.LOGIN, //islogin.isTrue ? Routes.HOME : Routes.LOGIN,
             getPages: AppPages.routes,
           );
         });

@@ -27,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: Text('Homenya'),
       ),
-      body: Text(pageC.kd_store),
+      body: Text("${pageC.kd_store.value}"),
       bottomNavigationBar: ConvexAppBar(
           backgroundColor: Colors.red,
           items: [

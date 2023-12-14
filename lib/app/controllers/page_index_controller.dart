@@ -4,12 +4,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../routes/app_pages.dart';
 
 class PageIndexController extends GetxController {
+  @override
+  void onInit() {
+    _getPref();
+    // Get called when controller is created
+    super.onInit();
+  }
+
   RxInt pageIndex = 0.obs;
   RxBool islogin = false.obs;
-  String nik = "";
-  String nama = "";
-  String kd_store = "";
-  String nm_store = "";
+  RxString nik = "".obs;
+  RxString nama = "".obs;
+  RxString kd_store = "".obs;
+  RxString nm_store = "".obs;
+  RxString jabatan = "".obs;
+  RxString email = "".obs;
   void changePage(int i) async {
     switch (i) {
       case 2:
@@ -22,20 +31,17 @@ class PageIndexController extends GetxController {
     }
   }
 
-  void getPref() async {
+  void _getPref() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     // final cekSession = await SharedPreferences.getInstance();
-
     var islogin = pref.getBool("is_login");
-    // print(islogin);
-    if (islogin != null && islogin == true) {
-      print('ada sessionnya');
-      nik = pref.getString("nik_portal")!;
-      nama = pref.getString("nama")!;
-      kd_store = pref.getString("kd_store")!;
-      nm_store = pref.getString("nm_toko")!;
-    }
-    ;
+    // print(pref.getString("nik_portal"));
+    nik.value = pref.getString("nik_portal")!;
+    nama.value = pref.getString("nama")!;
+    kd_store.value = pref.getString("kd_store")!;
+    nm_store.value = pref.getString("nm_toko")!;
+    email.value = pref.getString("email")!;
+    jabatan.value = pref.getString("jabatan")!;
     // else {
     //   Navigator.of(context, rootNavigator: true).pop();
     //   Navigator.pushAndRemoveUntil(
