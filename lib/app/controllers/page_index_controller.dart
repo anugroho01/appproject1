@@ -31,15 +31,15 @@ class PageIndexController extends GetxController {
     }
   }
 
-  void _getPref() async {
+  _getPref() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     // final cekSession = await SharedPreferences.getInstance();
-    var islogin = pref.getBool("is_login");
+    islogin.value = pref.getBool("is_login")!;
     // print(pref.getString("nik_portal"));
     nik.value = pref.getString("nik_portal")!;
     nama.value = pref.getString("nama")!;
     kd_store.value = pref.getString("kd_store")!;
-    nm_store.value = pref.getString("nm_toko")!;
+    // nm_store.value = pref.getString("nm_toko")!;
     email.value = pref.getString("email")!;
     jabatan.value = pref.getString("jabatan")!;
     // else {

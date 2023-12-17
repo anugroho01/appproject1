@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:appproject1/app/modules/login/controllers/login_controller.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -8,12 +9,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../controllers/page_index_controller.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends StatelessWidget {
   // const ProfileView({super.key});
   final pageC = Get.find<PageIndexController>();
   final profileC = Get.find<ProfileController>();
+  final indexC = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     print('nama' + "${pageC.nik.value}");
@@ -24,7 +27,11 @@ class ProfileView extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {}, icon: Icon(Icons.logout), color: Colors.black)
+              onPressed: () {
+                indexC.logout();
+              },
+              icon: Icon(Icons.logout),
+              color: Colors.black)
         ],
       ),
       body: Padding(

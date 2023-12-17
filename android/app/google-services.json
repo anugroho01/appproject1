@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "356711501471",
+    "project_id": "fcmalpha1",
+    "storage_bucket": "fcmalpha1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356711501471:android:c2da4f74255cebc3331caa",
+        "android_client_info": {
+          "package_name": "com.ariskaproject.appproject1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBri_of5_-Xh2PN4cKILeW23ivmIhiAasI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

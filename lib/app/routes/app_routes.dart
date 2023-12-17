@@ -7,6 +7,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const PROFILE = _Paths.PROFILE;
   static const LANDING_PAGE = _Paths.LANDING_PAGE;
+  static const OOS_MIDIK = _Paths.OOS_MIDIK;
+  static const SCAN_ITEM = _Paths.SCAN_ITEM;
 }
 
 abstract class _Paths {
@@ -15,4 +17,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const PROFILE = '/profile';
   static const LANDING_PAGE = '/landing-page';
+  static const OOS_MIDIK = '/oos-midik';
+  static const SCAN_ITEM = '/scan-item';
 }

@@ -5,19 +5,20 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
   RxBool isLoading = false.obs;
-  bool islogin = false;
+  RxBool islogin = false.obs;
+  var isAuth = false.obs;
 
   TextEditingController nik = TextEditingController();
   TextEditingController pin = TextEditingController();
 
   Future<void> cekLogin() async {
     isLoading.value = true;
-    final userdata = GetStorage();
+    // final userdata = GetStorage();
     SharedPreferences pref = await SharedPreferences.getInstance();
     if (nik.text.isNotEmpty && pin.text.isNotEmpty) {
       try {
@@ -64,7 +65,7 @@ class LoginController extends GetxController {
             //   "kd_branch": result[0]['branch'],
             // });
             // pref.setString('authData', myMapsPref);
-            islogin = true;
+            // islogin.value = true;
             Get.offAllNamed(Routes.HOME);
             isLoading.value = false;
           } else {
@@ -84,6 +85,28 @@ class LoginController extends GetxController {
     } else {
       isLoading.value = false;
       Get.snackbar("Terjadi Kesalahan", "PIN dan NIK wajib di isi!");
+    }
+  }
+
+  Future<void> logout() async {
+    Get.offAllNamed(Routes.LOGIN);
+  }
+
+  Future<void> firstInitialized() async {
+    await autoLogin().then((value) {
+      if (value) {
+        isAuth.value = true;
+      }
+    });
+  }
+
+  Future<bool> autoLogin() async {
+    try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      islogin.value = pref.getBool("is_login")!;
+      return true;
+    } catch (err) {
+      return false;
     }
   }
 }
