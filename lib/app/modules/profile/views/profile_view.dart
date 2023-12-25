@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:appproject1/app/modules/login/controllers/login_controller.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:avatar_glow/avatar_glow.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -42,25 +39,24 @@ class ProfileView extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
-                    AvatarGlow(
-                      // endRadius: 110,
-                      // glowColor: Colors.red,
-                      // duration: Duration(seconds: 2),
-                      child: Container(
-                        width: 175,
-                        height: 175,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.asset("assets/logo/noimage.png",
-                                fit: BoxFit.cover)
-                            // authC.user.value.photoUrl == "noimage"
-                            //     ? Image.asset("assets/logo/noimage.png",
-                            //         fit: BoxFit.cover)
-                            //     : Image.network(authC.user.value.photoUrl!,
-                            //         fit: BoxFit.cover)
-                            ),
-                      ),
+                    // endRadius: 110,
+                    // glowColor: Colors.red,
+                    // duration: Duration(seconds: 2),
+                    Container(
+                      width: 175,
+                      height: 175,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset("assets/logo/noimage.png",
+                              fit: BoxFit.cover)
+                          // authC.user.value.photoUrl == "noimage"
+                          //     ? Image.asset("assets/logo/noimage.png",
+                          //         fit: BoxFit.cover)
+                          //     : Image.network(authC.user.value.photoUrl!,
+                          //         fit: BoxFit.cover)
+                          ),
                     ),
+
                     Text("${pageC.nama.value}",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),

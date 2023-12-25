@@ -37,14 +37,22 @@ class MyApp extends StatelessWidget {
         future: Future.delayed(Duration(seconds: 3)),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Obx(
-              () => GetMaterialApp(
-                // title: "IT Modeler",
-                initialRoute:
-                    pageLogin.nik.isNotEmpty ? Routes.HOME : Routes.LOGIN,
-                getPages: AppPages.routes,
-              ),
-            );
+            return FutureBuilder(
+                future: Future.delayed(Duration(seconds: 3)),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Obx(
+                      () => GetMaterialApp(
+                        // title: "IT Modeler",
+                        initialRoute: pageLogin.nik.isNotEmpty
+                            ? Routes.TRACKING_DELIVERY
+                            : Routes.LOGIN,
+                        getPages: AppPages.routes,
+                      ),
+                    );
+                  }
+                  return SplashScreen();
+                });
           }
           return Center(
             child: Column(

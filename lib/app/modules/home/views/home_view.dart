@@ -8,14 +8,9 @@ import '../../../controllers/page_index_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class HomeView extends StatelessWidget {
+  // const HomeView({super.key});
 
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
   // final pageC = Get.find<PageIndexController>();
   final pageC = Get.put(PageIndexController(), permanent: true);
 
@@ -132,12 +127,12 @@ class _HomeViewState extends State<HomeView> {
                       child: InkWell(
                         splashColor: Colors.red.withAlpha(30),
                         onTap: () {
-                          debugPrint('Card tapped.');
+                          Get.offAllNamed(Routes.INFO_DELIVERY);
                         },
                         child: SizedBox(
                           width: 200,
                           height: 100,
-                          child: Center(child: Text('Tracking Truck')),
+                          child: Center(child: Text('Info Delivery')),
                         ),
                       ),
                     ),

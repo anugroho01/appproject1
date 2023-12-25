@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/infoDelivery/bindings/info_delivery_binding.dart';
+import '../modules/infoDelivery/views/info_delivery_view.dart';
 import '../modules/landingPage/bindings/landing_page_binding.dart';
 import '../modules/landingPage/views/landing_page_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -12,6 +14,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/scanItem/bindings/scan_item_binding.dart';
 import '../modules/scanItem/views/scan_item_view.dart';
+import '../modules/trackingDelivery/bindings/tracking_delivery_binding.dart';
+import '../modules/trackingDelivery/views/tracking_delivery_view.dart';
 
 part 'app_routes.dart';
 
@@ -28,7 +32,7 @@ class AppPages {
     ),
     GetPage(
         name: _Paths.HOME,
-        page: () => const HomeView(),
+        page: () => HomeView(),
         binding: HomeBinding(),
         transition: Transition.fadeIn),
     GetPage(
@@ -50,6 +54,16 @@ class AppPages {
       name: _Paths.SCAN_ITEM,
       page: () => const ScanItemView(),
       binding: ScanItemBinding(),
+    ),
+    GetPage(
+      name: _Paths.INFO_DELIVERY,
+      page: () => InfoDeliveryView(),
+      binding: InfoDeliveryBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRACKING_DELIVERY,
+      page: () => const TrackingDeliveryView(),
+      binding: TrackingDeliveryBinding(),
     ),
   ];
 }

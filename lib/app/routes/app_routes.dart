@@ -9,6 +9,8 @@ abstract class Routes {
   static const LANDING_PAGE = _Paths.LANDING_PAGE;
   static const OOS_MIDIK = _Paths.OOS_MIDIK;
   static const SCAN_ITEM = _Paths.SCAN_ITEM;
+  static const INFO_DELIVERY = _Paths.INFO_DELIVERY;
+  static const TRACKING_DELIVERY = _Paths.TRACKING_DELIVERY;
 }
 
 abstract class _Paths {
@@ -19,4 +21,6 @@ abstract class _Paths {
   static const LANDING_PAGE = '/landing-page';
   static const OOS_MIDIK = '/oos-midik';
   static const SCAN_ITEM = '/scan-item';
+  static const INFO_DELIVERY = '/info-delivery';
+  static const TRACKING_DELIVERY = '/tracking-delivery';
 }
