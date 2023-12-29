@@ -89,6 +89,13 @@ class LoginController extends GetxController {
   }
 
   Future<void> logout() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.remove("nik_portal");
+    await pref.remove("nama");
+    await pref.remove("kd_store");
+    await pref.remove("jabatan");
+    await pref.remove("email");
+    await pref.remove("is_login");
     Get.offAllNamed(Routes.LOGIN);
   }
 

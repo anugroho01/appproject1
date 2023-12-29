@@ -62,7 +62,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TRACKING_DELIVERY,
-      page: () => const TrackingDeliveryView(),
+      page: () => TrackingDeliveryView(),
       binding: TrackingDeliveryBinding(),
     ),
   ];
