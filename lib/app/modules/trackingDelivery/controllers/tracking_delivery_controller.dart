@@ -78,8 +78,8 @@ class TrackingDeliveryController extends GetxController {
         namaSopir.value = data['nama_driver'];
         noPolisi.value = data['no_pol'];
 
-        print(data);
-        print(data['nama_driver']);
+        // print(data);
+        // print(data['nama_driver']);
       } else {
         print('gagal get');
       }

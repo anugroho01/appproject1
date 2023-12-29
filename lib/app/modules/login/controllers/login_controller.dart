@@ -19,7 +19,7 @@ class LoginController extends GetxController {
   Future<void> cekLogin() async {
     isLoading.value = true;
     // final userdata = GetStorage();
-    SharedPreferences pref = await SharedPreferences.getInstance();
+
     if (nik.text.isNotEmpty && pin.text.isNotEmpty) {
       try {
         var queryparams = {
@@ -40,7 +40,8 @@ class LoginController extends GetxController {
         if (response.statusCode == 200) {
           if (result[0]['sukses'] == 'T') {
             print('Login successfully');
-
+            SharedPreferences pref = await SharedPreferences.getInstance();
+            await pref.reload();
             //pake getstorage
             // userdata.write('is_login', true);
             // userdata.write('nik_portal', nik.text);

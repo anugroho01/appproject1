@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                       () => GetMaterialApp(
                         // title: "IT Modeler",
                         initialRoute: pageLogin.nik.isNotEmpty
-                            ? Routes.TRACKING_DELIVERY
+                            ? Routes.HOME
                             : Routes.LOGIN,
                         getPages: AppPages.routes,
                       ),

@@ -6,17 +6,23 @@ import '../routes/app_pages.dart';
 class PageIndexController extends GetxController {
   @override
   void onInit() {
-    _getPref();
+    // getPref();
     // Get called when controller is created
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    // getPref();
+    super.onReady();
   }
 
   RxInt pageIndex = 0.obs;
   RxBool islogin = false.obs;
   var isLoading = false.obs;
   RxString nik = "".obs;
-  RxString nama = "".obs;
-  RxString kd_store = "".obs;
+  var nama = "".obs;
+  var kd_store = "".obs;
   RxString nm_store = "".obs;
   RxString jabatan = "".obs;
   RxString email = "".obs;
@@ -31,11 +37,12 @@ class PageIndexController extends GetxController {
         Get.offAllNamed(Routes.HOME);
     }
   }
-
-  Future<void> _getPref() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
+/*
+  Future<void> getPref() async {
     try {
       isLoading(true);
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      await pref.reload();
       islogin.value = pref.getBool("is_login")!;
       // print(pref.getString("nik_portal"));
       nik.value = pref.getString("nik_portal")!;
@@ -44,6 +51,8 @@ class PageIndexController extends GetxController {
       // nm_store.value = pref.getString("nm_toko")!;
       email.value = pref.getString("email")!;
       jabatan.value = pref.getString("jabatan")!;
+      print("get session ok");
+      print(nik.value);
     } catch (e) {
       print('Gagal memuat Session is $e');
     } finally {
@@ -61,5 +70,5 @@ class PageIndexController extends GetxController {
     //     (route) => false,
     //   );
     // }
-  }
+  }*/
 }

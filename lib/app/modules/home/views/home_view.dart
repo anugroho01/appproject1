@@ -1,25 +1,19 @@
+import 'package:appproject1/app/controllers/page_index_controller.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../controllers/page_index_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
-class HomeView extends StatelessWidget {
-  // const HomeView({super.key});
-
-  // final pageC = Get.find<PageIndexController>();
-  final pageC = Get.put(PageIndexController(), permanent: true);
-
-  //int tTrx = 0;
-  late int tTrx;
-
-  @override
+class HomeView extends GetView<HomeController> {
+  HomeView({Key? key}) : super(key: key);
+  // final pageC = Get.put(PageIndexController(), permanent: true);
+  final pageC = Get.find<PageIndexController>();
+  final pageH = Get.find<HomeController>();
   Widget build(BuildContext context) {
-    print(pageC.isLoading.value);
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.all(0),
@@ -37,7 +31,7 @@ class HomeView extends StatelessWidget {
             Container(
               height: 25,
             ),
-            Obx(() => pageC.isLoading.value
+            Obx(() => pageH.isLoading.value
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
@@ -67,7 +61,7 @@ class HomeView extends StatelessWidget {
                             children: <Widget>[
                               // Display the card's title using a font size of 24 and a dark grey color
                               Text(
-                                "${pageC.nama.value}",
+                                "${pageH.nama.value}",
                                 style: TextStyle(
                                   fontSize: 24,
                                   color: Colors.grey[800],
@@ -77,7 +71,7 @@ class HomeView extends StatelessWidget {
                               Container(height: 10),
                               // Display the card's text using a font size of 15 and a light grey color
                               Text(
-                                '${pageC.kd_store.value}', //MyStringsSample.card_text,
+                                '${pageH.kd_store.value}', //MyStringsSample.card_text,
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.grey[700],
@@ -194,11 +188,5 @@ class HomeView extends StatelessWidget {
           initialActiveIndex: pageC.pageIndex.value,
           onTap: (int i) => pageC.changePage(i)),
     );
-  }
-}
-
-class ImgSample {
-  static String get(String name) {
-    return 'assets/logo/$name';
   }
 }
