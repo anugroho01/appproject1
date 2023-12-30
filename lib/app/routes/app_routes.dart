@@ -11,6 +11,7 @@ abstract class Routes {
   static const SCAN_ITEM = _Paths.SCAN_ITEM;
   static const INFO_DELIVERY = _Paths.INFO_DELIVERY;
   static const TRACKING_DELIVERY = _Paths.TRACKING_DELIVERY;
+  static const PAGE_DRIVER = _Paths.PAGE_DRIVER;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const SCAN_ITEM = '/scan-item';
   static const INFO_DELIVERY = '/info-delivery';
   static const TRACKING_DELIVERY = '/tracking-delivery';
+  static const PAGE_DRIVER = '/page-driver';
 }

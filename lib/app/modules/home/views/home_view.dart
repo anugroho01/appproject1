@@ -171,6 +171,23 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    width: 115,
+                    child: Card(
+                      // margin: EdgeInsetsDirectional.only(start: 0.0, end: 0.0),
+                      child: InkWell(
+                        splashColor: Colors.red.withAlpha(30),
+                        onTap: () {
+                          Get.offAllNamed(Routes.PAGE_DRIVER);
+                        },
+                        child: SizedBox(
+                          width: 200,
+                          height: 100,
+                          child: Center(child: Text('Driver')),
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),

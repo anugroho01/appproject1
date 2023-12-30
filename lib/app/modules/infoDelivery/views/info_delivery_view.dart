@@ -1,5 +1,6 @@
 import 'package:appproject1/app/constant/color.dart';
 import 'package:appproject1/app/controllers/page_index_controller.dart';
+import 'package:appproject1/app/modules/trackingDelivery/controllers/tracking_delivery_controller.dart';
 import 'package:appproject1/app/routes/app_pages.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,10 @@ import '../controllers/info_delivery_controller.dart';
 class InfoDeliveryView extends GetView<InfoDeliveryController> {
   // const InfoDeliveryView({Key? key}) : super(key: key);
   final pageC = Get.put(PageIndexController(), permanent: true);
+  // final TrackC = Get.put(TrackingDeliveryController(), permanent: true);
   @override
   Widget build(BuildContext context) {
+    // print(TrackC.noPolisi.value);
     return Scaffold(
         body: Stack(
           children: [
@@ -80,7 +83,7 @@ class InfoDeliveryView extends GetView<InfoDeliveryController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('B 3 RAC'),
+                                        Text('NO POL Disini'),
                                         Card(
                                           color: appRed,
                                           child: GestureDetector(

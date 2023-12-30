@@ -6,7 +6,7 @@ import '../routes/app_pages.dart';
 class PageIndexController extends GetxController {
   @override
   void onInit() {
-    // getPref();
+    getPref();
     // Get called when controller is created
     super.onInit();
   }
@@ -37,7 +37,7 @@ class PageIndexController extends GetxController {
         Get.offAllNamed(Routes.HOME);
     }
   }
-/*
+
   Future<void> getPref() async {
     try {
       isLoading(true);
@@ -70,5 +70,5 @@ class PageIndexController extends GetxController {
     //     (route) => false,
     //   );
     // }
-  }*/
+  }
 }

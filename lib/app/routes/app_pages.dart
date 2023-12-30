@@ -10,6 +10,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/oosMidik/bindings/oos_midik_binding.dart';
 import '../modules/oosMidik/views/oos_midik_view.dart';
+import '../modules/pageDriver/bindings/page_driver_binding.dart';
+import '../modules/pageDriver/views/page_driver_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/scanItem/bindings/scan_item_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.TRACKING_DELIVERY,
       page: () => TrackingDeliveryView(),
       binding: TrackingDeliveryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAGE_DRIVER,
+      page: () => PageDriverView(),
+      binding: PageDriverBinding(),
     ),
   ];
 }
