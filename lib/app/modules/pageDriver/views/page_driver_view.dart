@@ -20,7 +20,121 @@ class PageDriverView extends GetView<PageDriverController> {
             icon: Icon(Icons.arrow_back),
             color: Colors.black,
           )),
-      body: Center(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              const Color.fromARGB(255, 255, 253, 231),
+              appRedSoft
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          ),
+          Column(
+            children: [
+              Expanded(
+                  child: FutureBuilder(
+                      future: Future.delayed(Duration(seconds: 2)),
+                      builder: (context, index) {
+                        if (index.connectionState == ConnectionState.done) {
+                          return ListView.builder(
+                              itemCount: driverC.storeData.length,
+                              itemBuilder: (context, snapshot) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    Card(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Container(
+                                                width: 80,
+                                                height: 80,
+                                                margin:
+                                                    EdgeInsets.only(right: 15),
+                                                decoration: BoxDecoration(
+                                                  color: appWhite,
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                child: Image.asset(
+                                                    "assets/icon/store.jpg"),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(driverC.storeData[snapshot]
+                                                      .kd_store ??
+                                                  'kode toko'),
+                                              Text(driverC.storeData[snapshot]
+                                                      .nama_toko ??
+                                                  ' nama toko'),
+                                            ],
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              width: 10,
+                                              margin:
+                                                  EdgeInsets.only(right: 15),
+                                              decoration: BoxDecoration(
+                                                color: appGreen,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: GestureDetector(
+                                                  onTap: () {
+                                                    driverC.openMap(
+                                                        driverC
+                                                                .storeData[
+                                                                    snapshot]
+                                                                .lat ??
+                                                            0.0,
+                                                        driverC
+                                                                .storeData[
+                                                                    snapshot]
+                                                                .long ??
+                                                            0.0);
+                                                  },
+                                                  child: SizedBox(
+                                                    height: 30,
+                                                    width: 30,
+                                                    child: Center(
+                                                      child: Text(
+                                                        'Route',
+                                                        style: TextStyle(
+                                                            color: appWhite),
+                                                      ),
+                                                    ),
+                                                  )),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                          ),
+                        );
+                      }))
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+/*
+Center(
         child: Card(
           color: appGreen,
           child: GestureDetector(
@@ -39,7 +153,5 @@ class PageDriverView extends GetView<PageDriverController> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
+      )
+      */
