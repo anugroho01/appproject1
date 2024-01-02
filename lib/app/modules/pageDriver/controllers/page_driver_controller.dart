@@ -90,8 +90,8 @@ class storeRoute {
   factory storeRoute.fromJson(Map<String, dynamic> json) => storeRoute(
         nama_toko: json["name"],
         kd_store: json["username"],
-        lat: double.parse(json['address']['geo']["lat"]) ?? 0.0,
-        long: double.parse(json['address']['geo']["lng"]) ?? 0.0,
+        lat: double.parse(json['address']['geo']["lat"]),
+        long: double.parse(json['address']['geo']["lng"]),
       );
 
   Map<String, dynamic> toJson() => {

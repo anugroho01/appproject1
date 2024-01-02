@@ -36,24 +36,23 @@ class PageDriverView extends GetView<PageDriverController> {
                       future: Future.delayed(Duration(seconds: 2)),
                       builder: (context, index) {
                         if (index.connectionState == ConnectionState.done) {
-                          return ListView.builder(
-                              itemCount: driverC.storeData.length,
-                              itemBuilder: (context, snapshot) {
-                                return ListView(
-                                  shrinkWrap: true,
-                                  children: [
-                                    Card(
+                          return Obx(() => driverC.isLoading.isTrue
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : ListView.builder(
+                                  itemCount: driverC.storeData.length,
+                                  itemBuilder: (context, snapshot) {
+                                    return Card(
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
                                             children: [
                                               Container(
                                                 width: 80,
                                                 height: 80,
-                                                margin:
-                                                    EdgeInsets.only(right: 15),
                                                 decoration: BoxDecoration(
                                                   color: appWhite,
                                                   borderRadius:
@@ -65,6 +64,7 @@ class PageDriverView extends GetView<PageDriverController> {
                                             ],
                                           ),
                                           Column(
+                                            textDirection: TextDirection.ltr,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -76,29 +76,21 @@ class PageDriverView extends GetView<PageDriverController> {
                                                   ' nama toko'),
                                             ],
                                           ),
-                                          Expanded(
-                                            child: Container(
-                                              width: 10,
-                                              margin:
-                                                  EdgeInsets.only(right: 15),
-                                              decoration: BoxDecoration(
-                                                color: appGreen,
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                              ),
+                                          Container(
+                                            padding: EdgeInsets.only(right: 0),
+                                            width: 80,
+                                            height: 80,
+                                            child: Card(
+                                              color: appGreen,
                                               child: GestureDetector(
                                                   onTap: () {
                                                     driverC.openMap(
                                                         driverC
-                                                                .storeData[
-                                                                    snapshot]
-                                                                .lat ??
-                                                            0.0,
+                                                            .storeData[snapshot]
+                                                            .lat!,
                                                         driverC
-                                                                .storeData[
-                                                                    snapshot]
-                                                                .long ??
-                                                            0.0);
+                                                            .storeData[snapshot]
+                                                            .long!);
                                                   },
                                                   child: SizedBox(
                                                     height: 30,
@@ -115,10 +107,8 @@ class PageDriverView extends GetView<PageDriverController> {
                                           )
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                );
-                              });
+                                    );
+                                  }));
                         }
                         return Center(
                           child: Column(

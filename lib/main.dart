@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                       () => GetMaterialApp(
                         // title: "IT Modeler",
                         initialRoute: pageLogin.nik.isNotEmpty
-                            ? Routes.PAGE_DRIVER
+                            ? Routes.HOME
                             : Routes.LOGIN,
                         getPages: AppPages.routes,
                       ),
