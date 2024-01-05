@@ -36,8 +36,8 @@ class OosMidikView extends GetView<OosMidikController> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                           columns: const [
-                            DataColumn(label: Text('nama'), numeric: false),
-                            DataColumn(label: Text('email')),
+                            DataColumn(label: Text('plu'), numeric: false),
+                            DataColumn(label: Text('desc')),
                             DataColumn(label: Text('qty'))
                           ],
                           rows: List.generate(
